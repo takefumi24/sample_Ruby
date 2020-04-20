@@ -1,5 +1,5 @@
-# 変数examにハッシュを代入してください
-exam={subject=>Math,score=>80}
+# キーをシンボルで書き換えてください
+exam = {:subject => "Math", :score => 80}
 
-# 変数examを出力してください
-puts exam
+# キー「:score」の値を出力してください
+puts exam[:score]
