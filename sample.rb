@@ -5,8 +5,14 @@ characters = [
   {name: "とりずきん"}
 ]
 
-# each文でそれぞれのキャラクターの名前を表示してください
 characters.each do |character|
-  puts "---------------------"
+  puts "--------------------"
   puts "名前は#{character[:name]}です"
+
+  # キー:ageの値に応じて年齢の情報を出力してください
+  if character[:age]
+    puts "年齢は#{character[:age]}歳です"
+  else
+    puts"年齢は秘密です"
+  end
 end
