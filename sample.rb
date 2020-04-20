@@ -1,9 +1,12 @@
-exams = [
-  {subject: "Math", score: 80},
-  {subject: "Science", score: 55}
+characters = [
+  {name: "にんじゃわんこ", age: 14},
+  {name: "ひつじ仙人"},
+  {name: "ベイビーわんこ", age: 5},
+  {name: "とりずきん"}
 ]
 
-# each文を用いて、要素ごとに「○○の結果は△△点です」と出力してください
-exams.each do |exam|
-  puts "#{exam[:subject]}の結果は#{exam[:score]}点です"
+# each文でそれぞれのキャラクターの名前を表示してください
+characters.each do |character|
+  puts "---------------------"
+  puts "名前は#{character[:name]}です"
 end
