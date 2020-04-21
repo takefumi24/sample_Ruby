@@ -1,15 +1,11 @@
-puts "ジャンル　:　映画\n"
-puts "---------------------------\n"
-puts "タイトル　:　時をかける少女\n"
-puts "---------------------------\n"
-puts "感想　:　\n"
-puts "人生の最高傑作アニメ。\n"
-puts ""
-puts "青春厨としてはたまらない甘酸っぱい青春ストーリー。\n"
-puts ""
-puts "ちあきのイケメンさは言うまでもない。"
-puts ""
-puts "人にお金を払ってでもみて欲しい作品。"
-puts ""
-puts "早く見たほうがいいよ。"
-puts "Time waits for no one."
+genre="映画"
+title= "時をかける少女"
+review="人生の最高傑作アニメ。\n\n青春厨としてはたまらない甘酸っぱい青春ストーリー。\n\nちあきのイケメンさは言うまでもない。\n\n人にお金を払ってでもみて欲しい作品。\n\n早く見たほうがいいよ。\nTime waits for no one."
+dot_line="---------------------------"
+
+puts "ジャンル : " + genre
+puts dot_line
+puts "タイトル : " + title
+puts dot_line
+puts "感想 : " + review
+puts dot_line
