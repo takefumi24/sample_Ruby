@@ -1,5 +1,8 @@
+puts "ジャンルを入力してください:"
 genre=gets
+puts "タイトルを入力してください:"
 title= gets
+puts "感想を入力してください:"
 review=gets
 dot_line="---------------------------"
 
