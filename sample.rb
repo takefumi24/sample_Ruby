@@ -1,11 +1,11 @@
 puts "ジャンルを入力してください:"
-genre=gets
+genre=gets.chomp
 puts "タイトルを入力してください:"
-title= gets
+title= gets.chomp
 puts "感想を入力してください:"
-review=gets
+review=gets.chomp
 dot_line="---------------------------"
 
 puts "ジャンル : #{genre}\n#{dot_line}"
 puts "タイトル : #{title}\n#{dot_line}"
-puts "感想 : #{review}\n#{dot_line}"
+puts "感想 : \n#{review}\n#{dot_line}"
