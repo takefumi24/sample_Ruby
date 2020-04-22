@@ -21,7 +21,18 @@ class Review
   end
 end
 
-review = Review.new  # Reviewクラスのインスタンスを生成
-review.show_review  # show_reviewメソッドを実行
+while true do
+  puts "書いたレビューの数:#{Review.get_review_count}"
+  puts "[0]レビューを書く"
+  puts "[1]アプリを終了"
+  input = gets.to_i
 
-puts Review.get_review_count
+  if input==0
+    review = Review.new  # Reviewクラスのインスタンスを生成
+    review.show_review  # show_reviewメソッドを実行
+  elsif input==1
+    exit
+  else
+    puts "入力された値は無効です"
+  end
+end
