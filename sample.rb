@@ -1,14 +1,27 @@
-def withdraw(balance, amount)
-  fee = 110# 手数料
-  if (amount+fee)<=balance
-    balance-=(amount+fee)
-    puts "#{amount}円引き落としました。残高は#{balance}円です"
-  else
-    puts "残高不足です"
+class Review
+  @@review_count=0
+  def self.get_review_count
+    return @@review_count
+  end
+  def initialize
+    puts "タイトルを入力してください"
+    @title = gets.chomp
+    puts "ジャンルを入力してください"
+    @genre = gets.chomp
+    puts "感想を入力してください"
+    @impression = gets.chomp
+    @@review_count = @@review_count+1
+  end
+
+  def show_review
+    line = "---------------------------"
+    puts "ジャンル : #{@genre}\n#{line}\n"
+    puts "タイトル : #{@title}\n#{line}\n"
+    puts "感想 :\n#{@impression}\n#{line}\n"
   end
 end
 
-balance = 100000# 残高
-puts "いくら引き落としますか？（手数料110円かかります）"
-money = gets.to_i
-withdraw(balance, money)
+review = Review.new  # Reviewクラスのインスタンスを生成
+review.show_review  # show_reviewメソッドを実行
+
+puts Review.get_review_count
