@@ -1,6 +1,10 @@
-genre =gets
-title =gets
-review = gets
+post={}
+puts "ジャンルを入力してください："
+post[:genre] = gets.chomp
+puts "タイトルを入力してください："
+post[:title] = gets.chomp
+puts "感想を入力してください："
+post[:review] = gets.chomp
 line = "---------------------------"
 
 puts "ジャンル : #{genre}\n#{line}"
