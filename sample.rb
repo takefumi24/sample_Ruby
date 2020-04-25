@@ -1,60 +1,61 @@
-def post_review(a_posts)
-  post={}
-  puts "ジャンルを入力してください："
-  post[:genre] = gets.chomp
-  puts "タイトルを入力してください："
-  post[:title] = gets.chomp
-  puts "感想を入力してください："
-  post[:review] = gets.chomp
-  line = "---------------------------"
-
-  puts "ジャンル : #{post[:genre]}\n#{line}"
-  puts "タイトル : #{post[:title]}\n#{line}"
-  puts "感想 :\n#{post[:review]}\n#{line}"
-  a_posts<<post
-  return a_posts
+def register_book(books)
+  # 本の著者、タイトル、価格をユーザーに入力させ、保存する
+  puts '著者を入力してください'
+  author=gets.chomp
+  puts 'タイトルを入力してください'
+  title=gets.chomp
+  puts '価格を入力してください'
+  price=gets.to_i
+  book={author:author,title:title,price:price}
+  books<<book
 end
 
-def read_review(a_posts)
-  number=0
-  a_posts.each do |post|
-    puts "[#{number}]:#{post[:title]}のレビュー"
-    number+=1
+def show_books(books)
+  puts "平均価格: #{average_price(books)}"
+  puts "見たい番号を入力してください"
+  # 保存された本の一覧を出力する
+  index=1
+  books.each do |book|
+    puts "#{index}: #{book[:title]}"
+    index+=1
   end
-  puts "見たいレビューの番号を入力してください："
   input=gets.to_i
-  post=a_posts[input]
+  show_detail(books[input-1])
+end
 
-  line="---------------------------"
-  puts "ジャンル : #{post[:genre]}\n#{line}"
-  puts "タイトル : #{post[:title]}\n#{line}"
-  puts "感想 :\n#{post[:review]}\n#{line}"
+def show_detail(book)
+  # 選択された本の詳細な情報（著者、タイトル、価格）を出力する
+  puts "著者: #{book[:author]}"
+  puts "タイトル: #{book[:title]}"
+  puts "価格: #{book[:price]}円"
 
 end
 
-def end_program
-  exit
+def average_price(books)
+  # 全ての本の平均価格を算出する
+  total=0
+  books.each do |book|
+    total+=book[:price]
+  end
+  avarage=total/books.length
 end
 
-def exception
-  puts "入力された値は無効な値です"
-end
-
-posts=[]
-
+books=[]
 while true do
-  puts "レビュー数：#{posts.length}"
-  puts "[0]レビューを書く"
-  puts "[1]レビューを読む"
-  puts "[2]アプリを終了する"
-  input = gets.to_i
-  if input==0
-    posts=post_review(posts)
-  elsif input==1
-    read_review(posts)
-  elsif input==2
-  end_program
+  puts "番号を入力してください"
+  puts "0: 本を登録する"
+  puts "1: 本の一覧を見る"
+  puts "2: 終了する"
+  case gets.to_i
+  when 0
+    # 本の登録を行う
+    register_book(books)
+  when 1
+    # 保存された本の一覧を出力する
+    show_books(books)
+  when 2
+    exit
   else
-    puts "入力された値は、無効な値です"
+    puts '無効な値です'
   end
 end
