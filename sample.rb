@@ -1,34 +1,78 @@
-require "./menu"
+def register_data(datas)
+  puts "名前を入力してください"
+  name=gets.chomp
+  puts "パンチ力を入力してください(0 ~ 100)"
+  punch=power(gets.chomp.to_i)
+  puts "キック力を入力してください(0 ~ 100)"
+  kick=power(gets.chomp.to_i)
+  puts "ジャンプ力を入力してください(0 ~ 100)"
+  jump=power(gets.chomp.to_i)
 
-menu1 = Menu.new(name: "ピザ", price: 800)
-menu2 = Menu.new(name: "すし", price: 1000)
-menu3 = Menu.new(name: "コーラ", price: 300)
-menu4 = Menu.new(name: "お茶", price: 200)
-
-menus = [menu1, menu2, menu3, menu4]
-
-index = 0
-menus.each do |menu|
-  puts "#{index}. #{menu.info}"
-  index += 1
+  data={name:name,punch:punch,kick:kick,jump:jump,rank:hero_rank(punch,kick,jump)}
+  datas<<data
 end
 
-puts "--------------"
-puts "メニューの番号を選択してください"
 
-# 入力を数値として受け取って変数orderに代入してください
-order=gets.chomp.to_i
+def power(power)
+  while power>100
+  # 入力された数字が0~100になるまで繰り返し入力させる。
+    puts "100以下の数字を入力してください"
+      power=gets.to_i
+  end
+  return power
+end
 
-# 選択されたメニューのインスタンスを変数selected_menuに代入してください
-selected_menu=menus[order]
 
-# 「選択されたメニュー: ○○」となるように出力してください
-puts "選択されたメニュー:#{selected_menu}"
+def hero_rank(punch, kick, jump)
+  power=punch + kick + jump
+  # ヒーロランクの判定をする。
+  if power==300
+    rank="A"
+  elsif 100<=power && power<300
+    rank="B"
+  elsif 20<=power && power<100
+    rank="C"
+  else
+    rank="D"
+  end
+end
 
-puts "個数を入力してください(3つ以上で100円割引)"
 
-# 入力を数値として受け取って変数countに代入してください
-count=gets.chomp.to_i
+def show_data_list(datas)
 
-# 「お会計は○○円です」となるように出力してください
-puts "お会計は#{selected_menu.get_total_price(count)}円です"
+   puts "見たい番号を入力してください"
+  # 保存されたデータの一覧を出力する。
+  datas.each_with_index do |data,index|
+    puts "#{index + 1}:#{data[:name]}"
+  end
+  # 選択されたデータの詳細な情報（名前、パンチ力、キック力、ジャンプ力、ヒーロランク）を出力する。
+  input=gets.chomp.to_i - 1
+  data=datas[input]
+  puts "名前:#{data[:name]}"
+  puts "パンチ力:#{data[:punch]}"
+  puts "キック力:#{data[:kick]}"
+  puts "ジャンプ力:#{data[:jump]}"
+  puts "ヒーローランク:#{data[:rank]}"
+
+end
+
+datas=[]
+while true
+  puts '選択してください'
+  puts '[0]登録する'
+  puts '[1]データを確認する'
+  puts '[2]終了する'
+  input = gets.to_i
+
+  if input == 0
+    # データの登録を行う。
+    register_data(datas)
+  elsif input == 1
+    # 保存されたデータの一覧を表示する。
+    show_data_list(datas)
+  elsif input == 2
+    exit
+  else
+    puts '無効な値です'
+  end
+end
