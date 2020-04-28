@@ -1,76 +1,59 @@
-def register_data(datas)
-  puts "名前を入力してください"
-  name=gets.chomp
-  puts "パンチ力を入力してください(0 ~ 100)"
-  punch=power(gets.chomp.to_i)
-  puts "キック力を入力してください(0 ~ 100)"
-  kick=power(gets.chomp.to_i)
-  puts "ジャンプ力を入力してください(0 ~ 100)"
-  jump=power(gets.chomp.to_i)
+def register_book(books)
+  # 本の著者、タイトル、価格をユーザーに入力させ、保存する
+  puts '著者を入力してください'
+  author=gets.chomp
+  puts 'タイトルを入力してください'
+  title=gets.chomp
+  puts '価格を入力してください'
+  price=gets.chomp.to_i
 
-  data={name:name,punch:punch,kick:kick,jump:jump,rank:hero_rank(punch,kick,jump)}
-  datas<<data
+  book={author:author,title:title,price:price}
+  books << book
 end
 
-
-def power(power)
-  while power>100
-  # 入力された数字が0~100になるまで繰り返し入力させる。
-    puts "100以下の数字を入力してください"
-      power=gets.to_i
+def show_books(books)
+  puts "平均価格:#{average_price(books)}"
+  puts "見たい番号を入力してください"
+  # 保存された本の一覧を出力する
+  books.each_with_index do |book,index|
+    puts "#{index+1}: #{book[:title]}"
   end
-  return power
-end
-
-
-def hero_rank(punch, kick, jump)
-  power=punch + kick + jump
-  # ヒーロランクの判定をする。
-  if power==300
-    rank="A"
-  elsif 100<=power && power<300
-    rank="B"
-  elsif 20<=power && power<100
-    rank="C"
-  else
-    rank="D"
-  end
-end
-
-
-def show_data_list(datas)
-
-   puts "見たい番号を入力してください"
-  # 保存されたデータの一覧を出力する。
-  datas.each_with_index do |data,index|
-    puts "#{index + 1}:#{data[:name]}"
-  end
-  # 選択されたデータの詳細な情報（名前、パンチ力、キック力、ジャンプ力、ヒーロランク）を出力する。
   input=gets.chomp.to_i - 1
-  data=datas[input]
-  puts "名前:#{data[:name]}"
-  puts "パンチ力:#{data[:punch]}"
-  puts "キック力:#{data[:kick]}"
-  puts "ジャンプ力:#{data[:jump]}"
-  puts "ヒーローランク:#{data[:rank]}"
-
+  show_detail(books)
 end
 
-datas=[]
-while true
-  puts '選択してください'
-  puts '[0]登録する'
-  puts '[1]データを確認する'
-  puts '[2]終了する'
-  input = gets.to_i
+def show_detail(books)
+  # 選択された本の詳細な情報（著者、タイトル、価格）を出力する
+  books.each do |book|
+    puts "著者:#{book[:author]}"
+    puts "タイトル:#{book[:title]}"
+    puts "価格:#{book[:price]}"
+  end
+end
 
-  if input == 0
-    # データの登録を行う。
-    register_data(datas)
-  elsif input == 1
-    # 保存されたデータの一覧を表示する。
-    show_data_list(datas)
-  elsif input == 2
+def average_price(books)
+  # 全ての本の平均価格を算出する
+  total=0
+  books.each do |book|
+    total += book[:price]
+  end
+  average=total/books.length
+end
+
+books=[]
+while true do
+  puts "番号を入力してください"
+  puts "0: 本を登録する"
+  puts "1: 本の一覧を見る"
+  puts "2: 終了する"
+  case gets.to_i
+  when 0
+    # 本の登録を行う
+    register_book(books)
+  when 1
+    # 保存された本の一覧を出力する
+    show_books(books)
+  when 2
     exit
   else
     puts '無効な値です'
