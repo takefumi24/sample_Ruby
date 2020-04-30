@@ -1,61 +1,89 @@
-def register_book(books)
-  # 本の著者、タイトル、価格をユーザーに入力させ、保存する
-  puts '著者を入力してください'
-  author=gets.chomp
-  puts 'タイトルを入力してください'
-  title=gets.chomp
-  puts '価格を入力してください'
-  price=gets.chomp.to_i
+def register_data(cars)
+  # 車を登録するための関数を完成させなさい
+  # 1Lあたりの走行距離については、少数を扱うことが出来るようにto_fを扱い、乗車人数に関しては、to_iを使用すること
+  puts "車種を入力して下さい"
+  type = gets.chomp
+  puts "1Lあたりの走行可能距離を入力して下さい"
+  distance = gets.chomp.to_f
+  puts "乗車人数を入力して下さい"
+  capacity = gets.chomp.to_i
 
-  book={author:author,title:title,price:price}
-  books << book
+  car = {type: type, distance: distance, capacity: capacity}
+  cars<<car
 end
 
-def show_books(books)
-  puts "平均価格:#{average_price(books)}"
-  puts "見たい番号を入力してください"
-  # 保存された本の一覧を出力する
-  books.each_with_index do |book,index|
-    puts "#{index+1}: #{book[:title]}"
+def show_cars(cars)
+  # 保存した車種の一覧を表示するための関数を完成させなさい
+  cars.each_with_index do |car, index|
+   puts "#{index + 1}:#{car[:type]}"
   end
-  input=gets.chomp.to_i - 1
-  show_detail(books)
-end
-
-def show_detail(books)
-  # 選択された本の詳細な情報（著者、タイトル、価格）を出力する
-  books.each do |book|
-    puts "著者:#{book[:author]}"
-    puts "タイトル:#{book[:title]}"
-    puts "価格:#{book[:price]}"
+  # 確認したい番号を入力した後に、show_dataの関数を呼び出すようにしなさい
+  puts "確認したい番号を入力して下さい。"
+  input = gets.to_i - 1
+  car = cars[input]
+  if car
+   show_data(car)
+  else
+   puts "該当する番号がありません"
   end
 end
 
-def average_price(books)
-  # 全ての本の平均価格を算出する
-  total=0
-  books.each do |book|
-    total += book[:price]
-  end
-  average=total/books.length
+def show_data(car)
+  # 一覧から選択された車の全ての情報を表示する関数を完成させなさい
+   puts "車種:#{car[:type]}"
+   puts "1Lあたりの走行距離:#{car[:distance]}lm/l"
+   puts "乗車人数:#{car[:capacity]}人"
+
+  puts "これから走る距離(km)を入力して下さい。"
+  input_distance = gets.to_f
+
+  puts "これから乗る人数を入力して下さい。"
+  input_capacity = gets.to_i
+
+  # 目的地までの時間を計算する関数と乗車人数を計算する関数を呼び出して下さい
+  calculate_fuel_consumption(car, input_distance)
+  car_capacity(car, input_capacity)
 end
 
-books=[]
+
+def calculate_fuel_consumption(car, distance )
+  # 目的地までのガソリンの消費量を計算する関数を完成させなさい
+  fuel_consumption = distance / car[:distance]
+  puts "その目的地までは、ガゾリンを#{fuel_consumption.round(1)}L消費します。"
+end
+
+def car_capacity(car, capacity)
+  # 車に乗ることが出来る人数について、後何人乗ることが出来るのか、丁度乗ることが出来る人数なのか、もしくは何人定員オーバーなのかを出力する関数を完成させなさい
+  remaining_capacity = car[:capacity] - capacity
+  if remaining_capacity == 0
+   puts "車の定員丁度です"
+  elsif remaining_capacity > 0
+   puts "後、#{remaining_capacity}人乗ることができます}"
+  else
+   puts "#{remaining_capacity.abs}人定員オーバーです"
+  end
+end
+
+cars = []
+
 while true do
-  puts "番号を入力してください"
-  puts "0: 本を登録する"
-  puts "1: 本の一覧を見る"
-  puts "2: 終了する"
-  case gets.to_i
-  when 0
-    # 本の登録を行う
-    register_book(books)
-  when 1
-    # 保存された本の一覧を出力する
-    show_books(books)
-  when 2
+  puts "番号を入力して下さい"
+  puts "[0]:登録をする"
+  puts "[1]:データを確認する"
+  puts "[2]:終了する"
+
+  input = gets.chomp
+  case input
+  when "0"
+    # 車種を登録するための関数を呼び出しなさい。
+    register_data(cars)
+  when "1"
+    # 保存したデータを一覧で表示するための関数を呼び出しなさい。
+    show_cars(cars)
+  when "2"
+    # アプリケーションを終了させなさい。
     exit
   else
-    puts '無効な値です'
+    puts "無効な値です"
   end
 end
