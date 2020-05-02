@@ -1,89 +1,78 @@
-def register_data(cars)
-  # 車を登録するための関数を完成させなさい
-  # 1Lあたりの走行距離については、少数を扱うことが出来るようにto_fを扱い、乗車人数に関しては、to_iを使用すること
-  puts "車種を入力して下さい"
-  type = gets.chomp
-  puts "1Lあたりの走行可能距離を入力して下さい"
-  distance = gets.chomp.to_f
-  puts "乗車人数を入力して下さい"
-  capacity = gets.chomp.to_i
+def register_data(data)
 
-  car = {type: type, distance: distance, capacity: capacity}
-  cars<<car
+  # 名前、パンチ力、キック力、ジャンプ力をユーザーに入力させ、保存する。
+  puts "名前を入力してください"
+  name = gets.chomp
+  puts "パンチ力を入力してください(0 ~ 100)"
+  punch = power(gets.chomp.to_i)
+  puts "キック力を入力してください(0 ~ 100)"
+  kick = power(gets.chomp.to_i)
+  puts "ジャンプ力を入力してください(0 ~ 100)"
+  jump = power(gets.chomp.to_i)
+
+  person = {name: name, punch: punch, kick: kick, jump: jump, rank: hero_rank(punch, kick, jump)}
+  data << person
 end
 
-def show_cars(cars)
-  # 保存した車種の一覧を表示するための関数を完成させなさい
-  cars.each_with_index do |car, index|
-   puts "#{index + 1}:#{car[:type]}"
+
+def power(total)
+  while total > 100
+  # 入力された数字が0~100になるまで繰り返し入力させる。
+    puts "100以下の数字を入力してください"
+      total = gets.to_i
   end
-  # 確認したい番号を入力した後に、show_dataの関数を呼び出すようにしなさい
-  puts "確認したい番号を入力して下さい。"
-  input = gets.to_i - 1
-  car = cars[input]
-  if car
-   show_data(car)
+  return total
+end
+
+
+def hero_rank(punch, kick, jump)
+  total = punch + kick + jump
+  # ヒーロランクの判定をする。
+  if total == 300
+    rank = "A"
+  elsif 100 <= total && total < 300
+    rank = "B"
+  elsif 20 <= total && total < 100
+    rank = "C"
   else
-   puts "該当する番号がありません"
+    rank = "D"
   end
 end
 
-def show_data(car)
-  # 一覧から選択された車の全ての情報を表示する関数を完成させなさい
-   puts "車種:#{car[:type]}"
-   puts "1Lあたりの走行距離:#{car[:distance]}lm/l"
-   puts "乗車人数:#{car[:capacity]}人"
 
-  puts "これから走る距離(km)を入力して下さい。"
-  input_distance = gets.to_f
+def show_data_list(data)
 
-  puts "これから乗る人数を入力して下さい。"
-  input_capacity = gets.to_i
-
-  # 目的地までの時間を計算する関数と乗車人数を計算する関数を呼び出して下さい
-  calculate_fuel_consumption(car, input_distance)
-  car_capacity(car, input_capacity)
-end
-
-
-def calculate_fuel_consumption(car, distance )
-  # 目的地までのガソリンの消費量を計算する関数を完成させなさい
-  fuel_consumption = distance / car[:distance]
-  puts "その目的地までは、ガゾリンを#{fuel_consumption.round(1)}L消費します。"
-end
-
-def car_capacity(car, capacity)
-  # 車に乗ることが出来る人数について、後何人乗ることが出来るのか、丁度乗ることが出来る人数なのか、もしくは何人定員オーバーなのかを出力する関数を完成させなさい
-  remaining_capacity = car[:capacity] - capacity
-  if remaining_capacity == 0
-   puts "車の定員丁度です"
-  elsif remaining_capacity > 0
-   puts "後、#{remaining_capacity}人乗ることができます}"
-  else
-   puts "#{remaining_capacity.abs}人定員オーバーです"
+  puts "見たい番号を入力してください"
+  data.each_with_index do |person, index|
+    puts "#{index + 1}: #{person[:name]}"
   end
+
+  input = gets.chomp.to_i - 1
+  person = data[input]
+  puts "名前:#{person[:name]}"
+  puts "パンチ力:#{person[:punch]}"
+  puts "キック力:#{person[:kick]}"
+  puts "ジャンプ力:#{person[:jump]}"
+  puts "ヒーローランク:#{person[:rank]}"
 end
 
-cars = []
+data = []
+while true
+  puts '選択してください'
+  puts '[0]登録する'
+  puts '[1]データを確認する'
+  puts '[2]終了する'
+  input = gets.to_i
 
-while true do
-  puts "番号を入力して下さい"
-  puts "[0]:登録をする"
-  puts "[1]:データを確認する"
-  puts "[2]:終了する"
-
-  input = gets.chomp
-  case input
-  when "0"
-    # 車種を登録するための関数を呼び出しなさい。
-    register_data(cars)
-  when "1"
-    # 保存したデータを一覧で表示するための関数を呼び出しなさい。
-    show_cars(cars)
-  when "2"
-    # アプリケーションを終了させなさい。
+  if input == 0
+    # データの登録を行う。
+    register_data(data)
+  elsif input == 1
+    # 保存されたデータの一覧を表示する。
+    show_data_list(data)
+  elsif input == 2
     exit
   else
-    puts "無効な値です"
+    puts '無効な値です'
   end
 end
