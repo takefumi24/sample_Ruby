@@ -1,35 +1,15 @@
-# あなたは警官です。aとｂ二人の容疑者の取り調べをしています。
-# どちらも証言がTrue、またはFalseであればその証言はTrueです。
-# しかしどちらかがFalseでTrueであればその証言はFalse、と出力するメソッドを作りましょう。
-# 呼び出し方：
-# police_trouble(a, b)
+# 任意の文字に対してn番目の文字を消し、
+# その消した文字を出力するメソッドを作りましょう。
+# 呼び出し方
+# missing_char(string, num)
 
 # 出力例：
-# police_trouble(true, false) → False
-# police_trouble(false, false) → True
-# police_trouble(true, true) → True
+# missing_char('kitten', 1) → 'itten'
+# missing_char('kitten', 2) → 'ktten'
+# missing_char('kitten', 4) → 'kittn'
 
-
-def police_trouble(a,b)
-  if(a==b)
-    puts "True"
-  else
-   puts "False"
-  end
+def missing_char(array, n)
+  array.slice!(n)
+  puts array
 end
-
-puts police_trouble(true,false)
-puts police_trouble(false,false)
-puts police_trouble(true,true)
-
-
-# 模範回答
-def police_trouble(a, b)
-
-  if a && b || !a && !b
-    puts "True"
-  else
-    puts "False"
-  end
-
-end
+puts missing_char('kitten', 2)
