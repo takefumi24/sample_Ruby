@@ -1,40 +1,23 @@
-# 例） 1, 2, Fizz, 4, Buzz, Fizz ,,,,
+# シーザー暗号と呼ばれる暗号があります。これはアルファベットをある文字数分ずらすという暗号方式で、例えば「a」を２文字分ずらす（進める）と「c」になります。
 
-# このFizzBuzzを再現できるメソッドを作成してください。
-# ただし、いくつまでカウントするか、引数で指定できるものとします。
-def Fizz(num)
-  i = 1
-  for i in i..num do
-    if i % 3 == 0 && i % 5 == 0
-      puts "FizzBuzz"
-    elsif i % 5 == 0
-      puts "Buzz"
-    elsif i % 3 == 0
-      puts "Fizz"
-    else
-      puts i
-    end
-  end
+# 「frqjudwxodwlrq」という文字列があり、これを３文字ずらす（戻す）と復号できることがわかっています。それを実現させるコードを記述してください。
+char = "frqjudwxodwlrq"
+char_ary = char.split("")
+
+changed_char_ary = []
+
+char_ary.each do |char|
+"a".ord
+
+
+# 模範解答
+char = "frqjudwxodwlrq"
+char_ary = char.split("")
+
+changed_char_ary = []
+
+char_ary.each do |char|
+  changed_char_ary << (char.ord - 3).chr
 end
 
-Fizz(10)
-
-
-def fizzbuzz(max_num)
-
-  (1..max_num).each do |num|
-    if num % 15 == 0
-      puts "FizzBuzz"
-    elsif num % 5 == 0
-      puts "Buzz"
-    elsif num % 3 == 0
-      puts "Fizz"
-    else
-      puts num
-    end
-  end
-end
-
-puts 'いくつまで数えますか？'
-num = gets.to_i
-fizzbuzz(num)
+p changed_char_ary.join
