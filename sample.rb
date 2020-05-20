@@ -1,22 +1,40 @@
-# 任意の文字列の最初の2文字を最後尾に持ってきて
-# その文字を出力するメソッド
+# 例） 1, 2, Fizz, 4, Buzz, Fizz ,,,,
 
-
-def left2(str)
- puts str.slice(2, str.length - 2) + str.slice(0, 2)
+# このFizzBuzzを再現できるメソッドを作成してください。
+# ただし、いくつまでカウントするか、引数で指定できるものとします。
+def Fizz(num)
+  i = 1
+  for i in i..num do
+    if i % 3 == 0 && i % 5 == 0
+      puts "FizzBuzz"
+    elsif i % 5 == 0
+      puts "Buzz"
+    elsif i % 3 == 0
+      puts "Fizz"
+    else
+      puts i
+    end
+  end
 end
 
+Fizz(10)
 
-def left2(str)
-  puts str[2..-1] + str[0, 2]
+
+def fizzbuzz(max_num)
+
+  (1..max_num).each do |num|
+    if num % 15 == 0
+      puts "FizzBuzz"
+    elsif num % 5 == 0
+      puts "Buzz"
+    elsif num % 3 == 0
+      puts "Fizz"
+    else
+      puts num
+    end
+  end
 end
 
-left2('Hello')
-left2('java')
-left2('Hi')
-left2('Hihohhokkykky')
-
-# 解答
-# def left2(str)
-#   puts str[2..-1] + str[0..1]
-# end
+puts 'いくつまで数えますか？'
+num = gets.to_i
+fizzbuzz(num)
