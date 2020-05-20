@@ -1,19 +1,24 @@
-# 配列の中に複数の数字を入れて9だけカウントし
-# 「配列の中には9が3個です」と
-# 出力させるメソッドを作りましょう。
-# 呼び出し方
-# array_count9(nums)
-
-# 出力例
-# array_count9([1, 2, 9]) → 1
-# array_count9([1, 9, 9]) → 2
-# array_count9([1, 9, 9, 3, 9]) → 3
+# 1,2,3が全て配列内に入っていれば「True」それ以外は「False」と
+# 出力されるメソッドを作りなさい。
 
 
-def array_count9(nums)
-  count = nums.count(9)
-  puts count
+
+def array123(nums)
+  if nums.any? {|n| n == 1 && n == 2 && n == 3  }
+    p "True"
+  else
+    p "Flase"
+  end
+end
+array123([1, 1, 2, 3, 1])
+
+解答
+def array123(nums)
+  if (nums.include?(1) && nums.include?(2) && nums.include?(3))
+    puts "True"
+  else
+    puts "False"
+  end
 end
 
-array_count9([1, 9, 9, 3, 9])
-array_count9([1, 9, 9, 7, 5, 9, 9, 3, 9])
+array123([1, 1, 2, 3, 1])
