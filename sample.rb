@@ -1,18 +1,15 @@
-下記の（１）を変換して（２）にするためのコードを記述してください。
+# ⑴例えばPictweetで、Tweet.find(1)を実行するとidが1番のつぶやきを取得することができます。この時、Tweetクラスの中にfindメソッドを定義していないにも関わらずfindというメソッドを使用できる理由を述べてください。
 
-（１） "Today" " is" " sunny" （２） "Today is sunny"
+# ⑵Railsにおけるアソシエーションとはどのような機能か、またMVCのどこに含まれる機能なのか簡潔に述べてください。
 
-"Today" + " is" + " sunny"
+解答
+⑴ActiveRecordで定義されているメソッドなので使用できる。
 
-（１） "Ruby, Rails, JavaScript" （２） ["Ruby", " Rails", " JavaScript"]
+⑵アソシエーションとは、テーブル間のリレーションシップをモデルの上の関係として操作できるようにする仕組み。modelに記載する。
 
-"Ruby, Rails, JavaScript".split(",")
+# 模範解答
+# ⑴rails g model tweetのコマンドを実行するとTweetクラスが作成されるが、そのTweetクラスはActiveRecord::Baseを継承している。
 
-（１） "rails" （２） "Rails"
-"rails".capitalize
+# そのため、Tweetクラスのインスタンスに対して、ActiveRecord::Baseで定義されているメソッドを使用することができる。
 
-（１） "abcde" （２） "edcba"
-"abcde".reverse
-
-（１） "Hello, world" （２） "HELLO, WORLD"
-"Hello, world".upcase
+# ⑵DBのテーブルとテーブルを紐づけることによって、関連するデータの読み書きを容易にするための機能。MVCの中のM（モデル）に含まれる。
