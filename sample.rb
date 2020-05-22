@@ -1,22 +1,18 @@
-# 任意の文字列の最後の2文字を3回繰り返し
-# 出力するメソッドを作りましょう。
+# 任意の文字列の最初の2文字のみ出力するメソッドを作りましょう。
+# 文字列が2文字以下だと文字列をそのまま返します。
 # 出力例：
-# extra_end('Hello') → 'lololo'
-# extra_end('ab') → 'ababab'
-# extra_end('Hi') → 'HiHiHi'
+# 入力した最初の2文字のみ出す
+# first_two('Hello') → 'He'
+# first_two('abcdefg') → 'ab'
+# first_two('ab') → 'ab'
 
-def extra_end(str)
-  num = str[-2,2]
-  puts num *3
+def first_two(str)
+  if str.length <=2
+    puts str
+  else
+    puts str[0,2]
+  end
+
 end
 
-extra_end("Hello")
-extra_end('ab')
-
-# 模範解答
-
-def extra_end(str)
-  char_num = str.length
-  right2 = str.slice!(char_num - 2,2)
-  puts right2*3
-end
+first_two('strong')
