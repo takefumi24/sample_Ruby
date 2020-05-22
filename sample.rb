@@ -1,15 +1,61 @@
-# ⑴例えばPictweetで、Tweet.find(1)を実行するとidが1番のつぶやきを取得することができます。この時、Tweetクラスの中にfindメソッドを定義していないにも関わらずfindというメソッドを使用できる理由を述べてください。
+# 以下の出力結果を得られるようにしてください。ただし、クラスとインスタンスを使用するものとします。
+# 著者: 阿部
+# タイトル: Rubyの素晴らしさについて
+# 本文: Awesome Ruby!
 
-# ⑵Railsにおけるアソシエーションとはどのような機能か、またMVCのどこに含まれる機能なのか簡潔に述べてください。
 
-解答
-⑴ActiveRecordで定義されているメソッドなので使用できる。
 
-⑵アソシエーションとは、テーブル間のリレーションシップをモデルの上の関係として操作できるようにする仕組み。modelに記載する。
+class Article
 
-# 模範解答
-# ⑴rails g model tweetのコマンドを実行するとTweetクラスが作成されるが、そのTweetクラスはActiveRecord::Baseを継承している。
+  def initialize(author, title, content)
+    @author = author
+    @title = title
+    @content = content
+  end
 
-# そのため、Tweetクラスのインスタンスに対して、ActiveRecord::Baseで定義されているメソッドを使用することができる。
+  def author
+    @author
+  end
 
-# ⑵DBのテーブルとテーブルを紐づけることによって、関連するデータの読み書きを容易にするための機能。MVCの中のM（モデル）に含まれる。
+  def title
+    @title
+  end
+
+  def content
+    @content
+  end
+end
+
+article = Article.new("阿部","Rubyの素晴らしさについて","Awesome Ruby!" )
+
+puts "著者:#{article.author}"
+puts "タイトル:#{article.title}"
+puts "本文:#{article.content}"
+
+
+
+# class Article
+
+  def initialize(author, title, content)
+    @author = author
+    @title = title
+    @content = content
+  end
+
+  def author
+    @author
+  end
+
+  def title
+    @title
+  end
+
+  def content
+    @content
+  end
+
+end
+article = Article.new("阿部", "Rubyの素晴らしさについて", "Awesome Ruby!")
+puts "著者: #{article.author}"
+puts "タイトル: #{article.title}"
+puts "本文: #{article.content}"
