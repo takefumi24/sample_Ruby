@@ -1,26 +1,24 @@
-# 今日の曜日を表示するコードを記述してください。
-# ただし、金曜日だった場合だけ以下のように表示の内容を変えてください。
+# 正の整数を入力します。その整数が、10の倍数（10,20,30...）からの差が、2以内であるときはTrue
+# それ以外はFalseと出力するメソッドを作りましょう。
 
-# require "date"
+def near_ten(num)
+  if num % 10 <= 2 || num % 10 >= 8
+    puts "#{num}はTrue"
+  else
+    puts "#{num}はFalse"
+  end
+end
 
-# d = Date.today
-# print(d.year, "年", d.month, "月", d.day, "日")
-# day = Date.today.wday
-# youbi = %w[日 月 火 水 木 金 土]
-# if day == 5
-#   print(youbi[day],"曜日だ！！")
-# else
-#   print(youbi[day],"曜日")
-# end
+puts "正の整数を入力してください。"
+input = gets.chomp.to_i
+puts near_ten(input)
 
 # 解答
-require "date"
-
-day = Date.today.wday
-days = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
-
-if day == 5
-  puts "今日は#{days[day]}だ！！！"
-else
-  puts "今日は#{days[day]}"
+def near_ten(num)
+  quotient = num % 10
+  if quotient  <= 2 || quotient >= 8
+    puts "True"
+  else
+    puts "False"
+  end
 end
