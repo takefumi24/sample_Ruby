@@ -1,26 +1,12 @@
-# 任意の文字列の最初の2文字のみ出力するメソッドを作りましょう。
-# 文字列が2文字以下だと文字列をそのまま返します。
-# 例えば"x"は"x"を、空文字""は""を返します。
-# 出力例：
-# 入力した最初の2文字のみ出す
-# first_two('Hello') → 'He'
-# first_two('abcdefg') → 'ab'
-# first_two('ab') → 'ab'
+# 以下のハッシュから値だけを取り出し、配列にしてください。ただし、hashクラスのvaluesメソッドは利用しないこととします。
 
-def first_two(str)
-  puts str[0..1]
-end
+attr = {name: "田中", age: 27, height: 180, weight: 75}
+values = attr.map(&:last)
 
-first_two('x')
+puts values
 
-
-
-# 模範解答
-def first_two(str)
-  if str.length >= 2
-    left2 = str.slice!(0, 2)
-    puts left2
-  else
-    puts str
-  end
+# 解答
+values = []
+attr.each do |key, value|
+  values << value
 end
