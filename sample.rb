@@ -1,25 +1,33 @@
-# 数値numが1以上10以下の範囲であればTrueを出力します。
-# outside_modeがTrueであった場合は数値が0以下、または11以上であってもTrueを出力します。
-# それ以外はFalseを出力するメソッドを作りましょう。
-def in1to10(int,outside_mode)
- if int >=1 && int <= 10 || outside_mode == true
-  puts "True"
- else
-  puts "False"
- end
-end
+# 以下の条件を満たすコードを記述してください。
+# ・Bookクラスを作成する
+# ・Bookクラスは@titleと@priceをプロパティとして持っている
+# ・attr_readerを使用する
+# ・Bookクラスのインスタンスを作成する（タイトル、価格は任意）
+# ・作成したインスタンスから、タイトルを取得し画面に表示させる。
 
+class Book
+  attr_reader :title,:price
 
-in1to10(5,false)
-in1to10(11,false)
-in1to10(11,true)
-
-
-# 解答
-def in1to10(num,outside_mode)
-  if (num >= 1 && num <= 10) || outside_mode
-    puts "True"
-  else
-    puts "False"
+  def initialize(title,price)
+    @title = title
+    @price = price
   end
 end
+
+book = Book.new("影響力の武器",3000)
+
+puts book.title
+puts book.price
+
+# 解答
+class Book
+  attr_reader :title, :price
+
+  def initialize(title, price)
+    @title = title
+    @price = price
+  end
+end
+
+book = Book.new("プロを目指す人のためのRuby入門", 3218)
+puts book.title
