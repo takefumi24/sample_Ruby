@@ -1,33 +1,30 @@
-# 以下の条件を満たすコードを記述してください。
-# ・Bookクラスを作成する
-# ・Bookクラスは@titleと@priceをプロパティとして持っている
-# ・attr_readerを使用する
-# ・Bookクラスのインスタンスを作成する（タイトル、価格は任意）
-# ・作成したインスタンスから、タイトルを取得し画面に表示させる。
+# 以下の配列から、数を探して何番目に含まれているか結果を返すメソッドを作成してください。
+input = [3, 5, 9 ,12, 15, 21, 29, 35, 42, 51, 62, 78, 81, 87, 92, 93]
 
-class Book
-  attr_reader :title,:price
-
-  def initialize(title,price)
-    @title = title
-    @price = price
+def search(num,input)
+  if input.include?(num)
+    search_number = input.index(num)
+    puts "#{search_number + 1}番目にあります"
+  else
+    puts "その数は含まれていません"
   end
 end
 
-book = Book.new("影響力の武器",3000)
+search(12, input)
+search(7, input)
 
-puts book.title
-puts book.price
 
 # 解答
-class Book
-  attr_reader :title, :price
+def search(target_num, input)
 
-  def initialize(title, price)
-    @title = title
-    @price = price
+  input.each_with_index do |num, index|
+    if num == target_num
+      puts "#{index + 1}番目にあります"
+      return
+    end
   end
+  puts "その数は含まれていません"
 end
 
-book = Book.new("プロを目指す人のためのRuby入門", 3218)
-puts book.title
+input = [3, 5, 9 ,12, 15, 21, 29, 35, 42, 51, 62, 78, 81, 87, 92, 93]
+search(11, input)
