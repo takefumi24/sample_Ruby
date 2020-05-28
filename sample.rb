@@ -1,45 +1,25 @@
-# 警察がネズミ取りをしています。
-# 速度が60以下の場合、出力は0になります。
-# 速度が61以上80以下の場合、出力は1になります。
-# 速度が81以上の場合、出力は2になります。
-# 出力を計算するためのコードを作成し、
-# int値としてエンコードします。
-# 0=チケットなし、1 =小チケット、2 =大チケット。
-# と出力するメソッドを作りましょう。
-# アタナの誕生日の日だけ速度制限が5倍大きくなります。
-# 速度は小数点以下も有効ですが、判定の際は小数点一桁で四捨五入して整数にしてください。
+# 三項演算子とはどのようなものか説明してください。
+# 条件分岐文を1行にまとめて書いたもの
 
-def caught_speeding(speed, is_birthday)
-  if is_birthday == "True"
-    bonus = 5
-  else
-    bonus = 1
-  end
+# 以下の記述を、三項演算子を用いて書き換えてください。
+var = "文字列"
 
-  if speed.to_i > 80 * bonus
-    puts 2
-  elsif speed.to_i > 60 * bonus && speed.to_i <= 80 * bonus
-    puts 1
-  else
-    puts 0
-  end
-end
+# if var.class == String
+#   "varはStringです"
+# else
+#   "varはStringではありません"
+# end
 
-caught_speeding(60, "False")
-caught_speeding(65, "False")
-caught_speeding(65, "True")
+puts var.class == String ? "varはStringです": "varはStringではありません"
+
 
 
 # 解答
-def caught_speeding(speed, is_birthday)
-  speed_rounded = speed.round(1)
+1
+条件分岐を行うための演算子。
+条件式 ? 真の時の値 : 偽の時の値
+条件式を判定し、trueだった時は「真の時の値」を、falseだった時は「偽の時の値」を返す。条件や返り値がシンプルな場合、if分よりも簡潔に記述できる。
 
-  if speed_rounded <= 60
-    point = 0
-  elsif speed_rounded <= 80
-    point = 1
-  else
-    point = 2
-  end
-  puts is_birthday ? point * 5 : point
-end
+2.
+var = "文字列"
+var.class == String ? "varはstringです" : "varはstringではありません"
