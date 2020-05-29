@@ -1,18 +1,35 @@
-# 同じ結果を得るためにも、様々なコードの記述方法があります。
-# 以下のコードをワンライナーに書き換える方法について、２パターン以上のコードを記述してください。
-array = [1, 2, 3, 4, 5].map do |el|
-  if el.odd?
-    el
-  end
-end.compact!
+# 配列の内部に、複数のユーザーの情報をハッシュとして持つ変数user_dataがあります。
+# user_dataを利用して、全てのユーザーの名前だけが出力されるようにRubyでコーディングしてください。
+# ただし、出力結果は次のようになるものとします。
 
-array = [1, 2, 3, 4, 5].map { |el| el if el.odd? }.compact!
-array = (1..5).select(&:odd?)
+user_data = [
+  {
+    user: {
+        profile: {
+            name: 'George'
+        }
+    }
+  },
+  {
+    user: {
+        profile: {
+          name: 'Alice'
+        }
+    }
+  },
+  {
+    user: {
+        profile: {
+            name: 'Taro'
+        }
+    }
+  }
+]
+
+user_data.each do |data|
+  puts data[:user][:profile][:name]
+end
 
 
 # 解答
-（例）
-array = [1, 2, 3, 4, 5].map { |el| el if el.odd? }.compact!
-array = (1..5).to_a.delete_if { |el| el.even? }
-array = (1..5).to_a.delete_if(&:even?)
-array = [1, 2, 3, 4, 5].select{ |el| el.odd?}
+user_data.each{ |u| puts u.dig(:user, :profile, :name) }
