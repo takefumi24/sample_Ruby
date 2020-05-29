@@ -1,27 +1,51 @@
-# Rubyのメソッドを定義するときに、様々な引数の渡し方ができます。
-# 以下の機能を利用したメソッドのコードを記述してください。
-# メソッドの内容は問いません。
+# 3つの整数a b cが与えられた場合、bまたはcがaとの差が１でかつbとｃとの数値の差が2以上の場合はTrue。
+# それ以外はFalseと出力するメソッドを作りましょう。
 
-# ①デフォルト値
-def name(first_name = "tanaka", last_name = "souta")
-  puts "my name is #{first_name} #{last_name}"
-end
-name("dan")
-
-
-
-# ②可変長引数
-
-def gse(*numbers)
-  puts "今日の特急は#{numbers.join}です。"
+def close_far(a, b, c)
+  if ((b - a).abs == 1 || (c - a).abs == 1) && (b - c).abs >= 2
+    puts "True"
+  else
+    puts "False"
+  end
 end
 
-gse("1号","2号","3号","4号")
+close_far(1, 2, 10)
+close_far(1, 2, 3)
+close_far(4, 1, 3)
 
 
-# ③キーワード引数
-def apple(color: "red", price: 200, size:)
-  puts "#{color}, #{price}, #{size}"
+# 別解
+def close_far(a,b,c)
+  x = (a-b).abs
+  y = (a-c).abs
+  z = (b-c).abs
+
+  if ((x == 1 || y == 1) && z >= 2)
+    puts "True"
+  else
+    puts "False"
+  end
 end
 
-apple
+close_far(1, 2, 10)
+close_far(1, 2, 3)
+close_far(4, 1, 3)
+
+
+
+
+
+# 解答
+def close_far(a,b,c)
+  x = (a-b).abs
+  y = (a-c).abs
+  z = (b-c).abs
+
+  if (x == 1 && z >= 2)
+    puts "True"
+  elsif ( y == 1 && z >= 2)
+    puts "True"
+  else
+    puts "False"
+  end
+end
