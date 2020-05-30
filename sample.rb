@@ -1,39 +1,17 @@
-# 以下の仕様にしたがってコードを記述してください。
-
-# ・Personクラスはプロパティ name, ageを持っている。
-# ・StudentクラスはPersonクラスを継承している。
-# ・Studentクラスにはintroduceメソッドが定義されている。実行すると「私の名前は◯◯です。◯歳です」と表示がされる。
-# ・Studentクラスのインスタンスを作成し、introduceメソッドを実行する。
-
-class Person
-  def initialize(name,age)
-    @name = name
-    @age = age
-  end
+# 任意の文字列にcatとdogの文字が2つで１組ならTrue、それ以外だとFalseを出力するメソッドを作りましょう。
+def cat_dog(str)
+  puts str.include?("cat") && str.include?("dog") ? "True": "False"
 end
 
-class Student < Person
-  def introduce
-    puts "私の名前は#{@name}です。#{@age}歳です。"
+cat_dog("catdog")
+cat_dog("catcat")
+cat_dog("1cat1cadodog")
+
+
+# def cat_dog(str)
+  if str.include?("cat") && str.include?("dog")
+    puts "True"
+  else
+    puts "False"
   end
 end
-
-student = Student.new("dan",20)
-student.introduce
-
-# 解答
-class Person
-  def initialize(name, age)
-    @name = name
-    @age = age
-  end
-end
-
-class Student < Person
-  def introduce
-    puts "私の名前は#{@name}です。#{@age}歳です"
-  end
-end
-
-yamada = Student.new("山田", 20)
-yamada.introduce
