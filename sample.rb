@@ -1,18 +1,30 @@
-# FizzBuzzという言葉遊びがあります。1から数を数えていく際に、それが3の倍数だったら「Fizz」, 5の倍数だったら「Buzz」と言う、というものです。ただし、15の倍数の時は「FizzBuzz」と言います。
+# 任意の文字列が "xyz"を含み、
+# xyzの前にピリオド（.）が続かない場合はTrueを出力します。
+# したがって、 "xxyz"はカウントされますが、 "x.xyz"はカウントされない
+# メソッドを作りましょう。
 
-# 例） 1, 2, Fizz, 4, Buzz, Fizz ,,,,
-
-# このFizzBuzzを再現できるメソッドを作成してください。
-# ただし、いくつまでカウントするか、引数で指定できるものとします。また、each文で記載してください。
-
-(1..100).each do |i|
-  if i % 3 == 0 && i % 5 == 0
-    puts "FizzBuzz"
-  elsif i % 5 == 0
-    puts "Buzz"
-  elsif i % 3 == 0
-    puts "Fizz"
+def xyz_there(srt)
+  if srt.include?(".xyz")
+    puts "False"
+  elsif srt.include?("xyz")
+    puts "True"
   else
-    puts i
+    puts "False"
+  end
+end
+
+xyz_there('abcxyz')
+xyz_there('abc.xyz')
+xyz_there('xyz.abc')
+
+
+# 解答
+def xyz_there(str)
+  if str.include?(".xyz")
+    puts "False"
+  elsif str.include?("xyz")
+    puts "True"
+  else
+    puts "False"
   end
 end
