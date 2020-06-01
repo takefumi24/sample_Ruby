@@ -1,30 +1,19 @@
-# 任意の文字列が "xyz"を含み、
-# xyzの前にピリオド（.）が続かない場合はTrueを出力します。
-# したがって、 "xxyz"はカウントされますが、 "x.xyz"はカウントされない
-# メソッドを作りましょう。
-
-def xyz_there(srt)
-  if srt.include?(".xyz")
-    puts "False"
-  elsif srt.include?("xyz")
-    puts "True"
-  else
-    puts "False"
-  end
-end
-
-xyz_there('abcxyz')
-xyz_there('abc.xyz')
-xyz_there('xyz.abc')
-
+# シーザー暗号と呼ばれる暗号があります。これはアルファベットをある文字数分ずらすという暗号方式で、例えば「a」を２文字分ずらす（進める）と「c」になります。
+# 「frqjudwxodwlrq」という文字列があり、これを３文字ずらす（戻す）と復号できることがわかっています。それを実現させるコードを記述してください。
+chars = [*"a".."z"]
+char = "frqjudwxodwlrq"
+crypted = char.tr(chars.join, chars.rotate(-3).join)
+puts crypted
 
 # 解答
-def xyz_there(str)
-  if str.include?(".xyz")
-    puts "False"
-  elsif str.include?("xyz")
-    puts "True"
-  else
-    puts "False"
-  end
+
+char = "frqjudwxodwlrq"
+char_ary = char.split("")
+
+changed_char_ary = []
+
+char_ary.each do |char|
+  changed_char_ary << (char.ord - 3).chr
 end
+
+p changed_char_ary.join
