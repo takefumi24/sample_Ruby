@@ -1,26 +1,47 @@
-# routes.rbでは、resourcesを使ってルーティングを定義することをお伝えしてきました。ところで、resourcesの代わりにresourceを使ってルーティングを定義することもできます。resourceを利用した際に生成されるルーティングについて、resourcesを用いた場合との主な違いを2点、説明してください。
+# 任意の2つの文字列があります。大文字と小文字の違いを無視して、
+# どちらかの文字がもう一方の文字の最後にある場合はTrueを
+# ない場合はFalseを出力するプログラムを作りましょう。
+# （つまり、大文字と小文字は区別されません）。
 
-1,pathにidが含まれなくなる
-2,１つのリソースに対するCRUD処理を行う
+# def end_other(a,b)
+
+#  a_count = a.length
+#  b_count = b.length
+
+#   if a_count <= b_count
+#     check = b[-(a_count),b_count]
+#     p check.casecmp?(a)
+#   else
+#     check = a[-(b_count),b_count]
+#     p check.casecmp?(b)
+#   end
+# end
+
+def end_other(a, b)
+  a = a.downcase.reverse
+  b = b.downcase.reverse
+  puts a.slice(0..b.length - 1)
+  puts b
+  if a.slice(0..b.length - 1) == b || b.slice(0..a.length - 1) == a
+    puts "True"
+  else
+    puts "False"
+  end
+end
+end_other('abcaaaa', 'abXabc')
+end_other('Hiabc', 'abc')
+end_other('AbC', 'HiaBc')
+end_other('abc', 'abXabc')
 
 
-# 解答
-次の２つの違いがある。
-
-・idつきのパスが生成されない。show, editアクションの実行に、idが必要ない場合に有効。
-
-・indexアクション用のルーティングが生成されない。
-
-（例）
-
-routes.eb
-1 resource :users
-
-# 生成されるルーティング
- new_users GET    /users/new(.:format)  users#new
-edit_users GET    /users/edit(.:format) users#edit
-     users GET    /users(.:format)      users#show
-           PATCH  /users(.:format)      users#update
-           PUT    /users(.:format)      users#update
-           DELETE /users(.:format)      users#destroy
-           POST   /users(.:format)      users#create
+def end_other(a,b)
+  a_down = a.downcase
+  b_down = b.downcase
+  a_len = a_down.length
+  b_len = b_down.length
+  if  b_down.slice!(-(a_len)..b_len - 1) == a_down || a_down.slice!(-(b_len)..a_len - 1) == b_down
+    puts "True"
+  else
+    puts "False"
+  end
+end
