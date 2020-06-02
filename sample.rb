@@ -1,26 +1,26 @@
-# [A]と[B]の記述があり、書き方の違いはあれど、どちらも描画されるビューは全く同じです。しかしながら、ある理由により、[A][B]いずれかの記述の方が好まれます。より良い記述は[A][B]どちらか選び、その理由を記述してください。
+# routes.rbでは、resourcesを使ってルーティングを定義することをお伝えしてきました。ところで、resourcesの代わりにresourceを使ってルーティングを定義することもできます。resourceを利用した際に生成されるルーティングについて、resourcesを用いた場合との主な違いを2点、説明してください。
 
-[A].haml
-1 @users = User.all
-2 @users.each do |user|
-3  = render 'user',  user: user
+1,pathにidが含まれなくなる
+2,１つのリソースに対するCRUD処理を行う
 
-
-[B].haml
-1 @users = User.all
-2  = render 'user', users: @users
-
-"より良い記述はBです。理由は処理が早いからです。
-Aの場合、@usersに対して、each do で一人一人にrenderを実行しています。
-ユーザーが多くなれば多くなるほど、パフォーマンスが低下する。
-一方、Bはrenderする際の変数に@usersを使用しているため、処理は一度で済ませることができる。
-よって高速に処理をすることが可能である。"
 
 # 解答
-# [B]の方が好まれます。
-# 理由は、[B]の方が処理が速いからです。
-# [A]では、@usersにeachを使用して、user一人一人に対してrenderを実行しています。
-# この書き方だと、userが100人いると100回、50000人いると50000回、どの部分テンプレートを利用するのか探しにいく処理が実行されるため、ユーザーが多ければ多くなるほどパフォーマンスが低下していきます。
-# 一方、[B]では、renderする際の変数に、@usersを渡しています。
-# この書き方だと、どの部分テンプレートを利用するのか探しにいく処理は一度しか実行されないため、[A]より高速にビューを描画することができます。
-# なお、render @users と省略して記述することも可能です。
+次の２つの違いがある。
+
+・idつきのパスが生成されない。show, editアクションの実行に、idが必要ない場合に有効。
+
+・indexアクション用のルーティングが生成されない。
+
+（例）
+
+routes.eb
+1 resource :users
+
+# 生成されるルーティング
+ new_users GET    /users/new(.:format)  users#new
+edit_users GET    /users/edit(.:format) users#edit
+     users GET    /users(.:format)      users#show
+           PATCH  /users(.:format)      users#update
+           PUT    /users(.:format)      users#update
+           DELETE /users(.:format)      users#destroy
+           POST   /users(.:format)      users#create
