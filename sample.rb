@@ -1,28 +1,30 @@
-# Railsアプリケーションのコントローラーに関して以下のコードをみてください。
-class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters , if: :devise_controller?
+# 3つの整数a b cが与えられた場合、bまたはcがaとの差が１で、かつbとｃとの数値の差が2以上の場合はTrue。
+# それ以外はFalseと出力するメソッドを作りましょう。
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :avatar])
+def close_far(a,b,c)
+  if ((b - a).abs == 1 || (c - a).abs == 1) && (b - c).abs >= 2
+    puts "True"
+  else
+    puts "False"
   end
 end
 
-# このコードが何を実現しているのか説明してください。
-# 特に、この記述がApplicationControllerクラスに書いてあることに
-# 留意して、どのような動作になるのか解説を行なってください。
-"ApplicationControllerを継承しているコントローラー内の全てのアクションが実行される前に、before_actionが実行される。
-実行されたのがdevise_controllerであった場合、configure_permitted_parametersが呼び出される。
-devise_parameter_sanitizerが実行され、nicknameカラムとavatarカラムのへの保存が許可される。"
+close_far(1, 2, 10)
+close_far(1, 2, 3)
+close_far(4, 1, 3)
 
 
 # 解答
-"ApplicationControllerを継承しているコントローラー（ranking, users, およびdevise用のコントローラー）内の全てのアクションが実行される前に、before_actionが実行される。
+def close_far(a,b,c)
+  x = (a-b).abs
+  y = (a-c).abs
+  z = (b-c).abs
 
-もしそれがdeviseのコントローラーだったら（devise_controller?というメソッドの返り値がtrueだったら）configure_permitted_parametersを呼ぶ。
-
-configure_permitted_parametersの中で、devise_parameter_sanitizerが事項されるが、これはストロングパラメータのdevise版。サインアップ時に、nicknameとavatarカラムへの保存を許可する。
-
-（１ヶ所違うごとに-2点）
-
-<補足>
-deviseのコントローラーは、デフォルトではアプリケーション内に作成されません。興味がある方は、GitHubでソースコードを確認するとdeviseのコントローラーがApplictaionControllerを継承していることが確認できます。"
+  if (x == 1 && z >= 2)
+    puts "True"
+  elsif ( y == 1 && z >= 2)
+    puts "True"
+  else
+    puts "False"
+  end
+end
