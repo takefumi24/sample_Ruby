@@ -1,7 +1,9 @@
+foods = ['ピーマン', 'トマト', 'セロリ']
+foods.each do |food|
+  print "#{food}は好きですか?"
+  answer = ['はい','いいえ'].sample
+  puts answer
 
-# 下記の（１）を変換して（２）にするためのコードを記述してください。
-# （１） "Ruby, Rails, JavaScript"
-# （２） ["Ruby", " Rails", " JavaScript"]
-
-strs = "Ruby,Rails,JavaScript"
-puts strs.split(",")
+  # 質問に対して「はい」と答えない限り無限ループ
+  redo unless answer == 'はい'
+end
