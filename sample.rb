@@ -1,9 +1,15 @@
-foods = ['ピーマン', 'トマト', 'セロリ']
-foods.each do |food|
-  print "#{food}は好きですか?"
-  answer = ['はい','いいえ'].sample
-  puts answer
+# 任意の文字列で"hi"がいくつあるか数えてその数を出力するメソッドを作りましょう。
 
-  # 質問に対して「はい」と答えない限り無限ループ
-  redo unless answer == 'はい'
+def count_hi(str)
+  puts str.scan("hi").length
+end
+
+count_hi('abc hi ho')
+count_hi('ABChi hi')
+count_hi('hihi')
+
+
+# 解答
+def count_hi(str)
+  puts str.scan("hi").length
 end
