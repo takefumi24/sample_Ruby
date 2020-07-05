@@ -1,1 +1,7 @@
-n = 2
+h = %w(
+  Big\ Apple
+  Small\ Melon
+  Middle\ Orange
+)
+
+p h
